@@ -1,0 +1,92 @@
+{
+  "app_id": "pdfdingdocker",
+  "title": "Pdfding",
+  "image": "mrmn/pdfding:v1.7.2",
+  "repo_name": "pdfding",
+  "mode": "wrapper",
+  "container_port": 8000,
+  "category": [
+    "Utilities"
+  ],
+  "volumes": [
+    {
+      "host": "/Volume1/DockerAppData/pdfdingdocker/db",
+      "container": "/home/nonroot/pdfding/db"
+    },
+    {
+      "host": "/Volume1/DockerAppData/pdfdingdocker/media",
+      "container": "/home/nonroot/pdfding/media"
+    }
+  ],
+  "env": {
+    "TZ": "Asia/Shanghai",
+    "HOST_NAME": "*",
+    "CSRF_COOKIE_SECURE": "FALSE"
+  },
+  "auth": "Moechz",
+  "upstream_url": "",
+  "upstream_license": "",
+  "descript": "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon.",
+  "release_note": "1. First release.",
+  "important": "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN.",
+  "probe": {
+    "user_in_image": "nonroot",
+    "entrypoint": null,
+    "cmd": [
+      "./bootstrap.sh"
+    ],
+    "exposed_ports": [],
+    "declared_volumes": [],
+    "image_healthcheck": [],
+    "digest": "docker.1panel.live/mrmn/pdfding@sha256:1c7f65f0cf72eea7714c5f892474d803fbcaefdf91b94b509b717542b7db37c7",
+    "architecture": "x86_64",
+    "platforms": [],
+    "http_client_in_image": "",
+    "trial_run": {
+      "ok": true,
+      "http_code": "",
+      "state": "running",
+      "paths": [
+        "/home"
+      ],
+      "host_port": 18000,
+      "log_tail": "ons_workspaces... OK\n  Applying pdf.0021_adjust_workspace_role_names... OK\n  Applying pdf.0022_adjust_pdf_paths_to_ws_collection... OK\n  Applying pdf.0023_remove_owner... OK\n  Applying pdf.0024_remove_unneeded_null_true... OK\n  Applying pdf.0025_add_session_to_shared_pdf... OK\n  Applying socialaccount.0001_initial... OK\n  Applying socialaccount.0002_token_max_lengths... OK\n  Applying socialaccount.0003_extra_data_default_dict... OK\n  Applying socialaccount.0004_app_provider_id_settings... OK\n  Applying socialaccount.0005_socialtoken_nullable_app... OK\n  Applying socialaccount.0006_alter_socialaccount_extra_data... OK\n  Applying users.0025_remove_unneeded_null_true... OK\n  Applying users.0026_remove_nagging... OK\n  Applying users.0027_remove_pdf_stats_from_profile... OK\n  Applying users.0028_add_minimal_layout... OK\n  Applying users.0029_remove_creme_theme... OK\n  Applying users.0030_add_language_adjust_theme_choices... OK\nCleaning up shared PDFs with a deletion date in the past.\n[2026-11-10 14:15:05 +0000] [1] [INFO] Starting gunicorn 25.3.0\n[2026-11-10 14:15:05 +0000] [1] [INFO] Listening at: http://0.0.0.0:8000 (1)\n[2026-11-10 14:15:05 +0000] [1] [INFO] Using worker: sync\n[2026-11-10 14:15:05 +0000] [17] [INFO] Booting worker with pid: 17\n[2026-11-10 14:15:05 +0000] [18] [INFO] Booting worker with pid: 18\n[2026-11-10 14:15:05 +0000] [19] [INFO] Booting worker with pid: 19\n[2026-11-10 14:15:05 +0000] [1] [INFO] Control socket listening at /home/nonroot/.gunicorn/gunicorn.ctl",
+      "files_in_mounts": ""
+    },
+    "docker_hub": {},
+    "github": {}
+  },
+  "platform": "x86_64",
+  "user": "1000:1000",
+  "publisher": "Moechz",
+  "compose_project": "pdfdingdocker",
+  "github_repo": "pdfding",
+  "upstream_version": "1.7.2",
+  "release_tag_prefix": "v",
+  "version": "1.7.2-1",
+  "help": "https://github.com/Moechz/pdfding/issues",
+  "official": "https://github.com/Moechz/pdfding/issues",
+  "license": "see upstream",
+  "docker_socket": false,
+  "group_add": [],
+  "platforms": [
+    "x86_64",
+    "aarch64"
+  ],
+  "translations": {
+    "zh-cn": {
+      "descript": "PDF 管理与标注工具，支持标签、搜索和多用户。",
+      "important": "首次使用请打开网页完成初始化。数据保存在 DockerAppData/pdfdingdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+    },
+    "zh-hk": {
+      "descript": "PDF 管理与标注工具，支持标签、搜索和多用户。",
+      "important": "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/pdfdingdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+    }
+  },
+  "healthcheck": [
+    "CMD-SHELL",
+    "python3 -c \"import urllib.request as u; u.urlopen('http://127.0.0.1:8000/', timeout=5)\" || exit 1"
+  ],
+  "host_port": 8056,
+  "entrypoint_file": "specs/pdfding-entrypoint.sh"
+}
