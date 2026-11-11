@@ -63,7 +63,7 @@
   "github_repo": "pdfding",
   "upstream_version": "1.7.2",
   "release_tag_prefix": "v",
-  "version": "1.7.2-1",
+  "version": "1.7.2-2",
   "help": "https://github.com/Moechz/pdfding/issues",
   "official": "https://github.com/Moechz/pdfding/issues",
   "license": "see upstream",
