@@ -1,195 +1,198 @@
 # ===========================================================================
 # Multilingual file for the TOS 7 Docker application "pdfdingdocker".
 # File name MUST be: <appid>.lang.  23-language superset (14 required by TOS).
-# The App Center picks the text matching the user's device language;
-# untranslated nodes fall back to English, which the official guide allows.
+# The App Center picks the text matching the user's device language.
+# Untranslated nodes fall back to English, which the official guide allows.
 # Fields: name (app title), auth (upstream author), descript (up to 512
 # chars), release_note, important (up to 512 chars).
-# Translations come from tosapp.json "translations"; run
+#
+# Do NOT use ASCII semicolons inside the quoted values: the store parser
+# treats them as INI comment starters and truncates the description.
+# Translating: update tosapp.json "translations" and run
 #   tosdocker lang <app>          to re-render this file
 #   tosdocker translate <app>     to see what still needs translating
 # ===========================================================================
+
 [en-us]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [zh-cn]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "PDF 管理与标注工具，支持标签、搜索和多用户。"
-release_note = "1. First release."
-important    = "首次使用请打开网页完成初始化。数据保存在 DockerAppData/pdfdingdocker，重启和升级不会丢失。容器以 uid 1000 运行，挂载目录需对该用户可读。需要 DockerEngine；Docker Hub 不可达时先配置镜像加速。卸载并删除数据前请备份。局域网内为 HTTP。"
+descript     = "自托管 PDF 管理、阅读与标注工具。可用工作区、收藏夹和多级标签整理 PDF，支持批注、签名、高亮和阅读进度，并可通过链接分享 PDF 或收藏夹。可选 OIDC 单点登录和两步验证。所有数据保存在 NAS 本地。"
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "首次使用请打开网页创建第一个账号。数据保存在 /Volume1/DockerAppData/pdfdingdocker/，重启和升级不会丢失。容器以 uid 1000 运行，数据目录仅该用户可读。局域网内为 HTTP，暴露到公网前请配置 TLS 反向代理。本应用不含 OCR/AI 服务，不会把 PDF 内容发送给第三方。未配置 SMTP，找回密码邮件不会送达，可在 NAS 终端按 PRIVACY.md 第 4 节重置。卸载并删除数据前请备份。"
 
 [zh-hk]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "PDF 管理与标注工具，支持标签、搜索和多用户。"
-release_note = "1. First release."
-important    = "首次使用請開啟網頁完成初始化。資料保存在 DockerAppData/pdfdingdocker，重新啟動和升級不會遺失。容器以 uid 1000 運行，掛載目錄需對該使用者可讀。需要 DockerEngine；Docker Hub 不可達時先設定鏡像加速。解除安裝並刪除資料前請備份。區域網路內為 HTTP。"
+descript     = "自託管 PDF 管理、閱讀與標註工具。可用工作區、收藏夾和多級標籤整理 PDF，支援批註、簽名、高亮和閱讀進度，並可透過連結分享 PDF 或收藏夾。可選 OIDC 單一登入和雙重驗證。所有資料保存在 NAS 本地。"
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "首次使用請開啟網頁建立第一個帳號。資料保存在 /Volume1/DockerAppData/pdfdingdocker/，重新啟動和升級不會遺失。容器以 uid 1000 運行，資料目錄僅該使用者可讀。區域網路內為 HTTP，暴露到公網前請設定 TLS 反向代理。本應用不含 OCR/AI 服務，不會把 PDF 內容傳送給第三方。未設定 SMTP，重設密碼郵件不會送達，可在 NAS 終端機按 PRIVACY.md 第 4 節重設。解除安裝並刪除資料前請備份。"
 
 [fr-fr]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [de-de]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [it-it]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [es-es]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [hu-hu]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [ja-jp]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [ko-kr]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [pl-pl]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [ru-ru]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [tr-tr]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [pt-pt]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [ar-sa]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [cs-cz]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [he-il]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [id-id]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [nb-no]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [nl-nl]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [sv-se]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [th-th]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."
 
 [vi-vn]
 name         = "Pdfding"
 auth         = "Moechz"
 version      = "@@VERSION@@"
-descript     = "Pdfding packaged for TerraMaster TOS 7. It runs the official Docker Hub image inside a container on your NAS, keeps all of its data in an application data folder (so it survives restarts and updates), and is opened from its desktop icon."
-release_note = "1. First release."
-important    = "First run: open the web UI and complete the initial setup. Data lives in /Volume1/DockerAppData/pdfdingdocker/ and survives restarts and updates. The container runs as uid 1000, so mounted folders must be readable by that user. Needs DockerEngine; configure a registry mirror if Docker Hub is unreachable. Back up the application data folder before uninstalling with data removal. Plain HTTP on the LAN."
-
+descript     = "Self-hosted PDF manager, viewer and editor. Organise PDFs with workspaces, collections and nested tags, annotate and sign them, track reading progress, and share PDFs or collections by link. Supports optional OIDC single sign-on and two-factor authentication. All data stays on your NAS."
+release_note = "1.15.0-1: review remediation (C3 C7 F5 S11) plus upstream upgrade. Added PRIVACY.md and linked it from the App Center Help field. Fixed the HTTP login loop by disabling the Secure flag on the session and CSRF cookies. Restricted the data folder to 0700 and the database to 0600. Documented the data access, export and deletion channels. Upgraded PdfDing 1.7.2 to 1.15.0 with automatic database migrations."
+important    = "First run: open the web UI and create the first account. Data is kept in /Volume1/DockerAppData/pdfdingdocker/. Runs as uid 1000 with data folders restricted to that user. LAN access is plain HTTP, use a TLS reverse proxy before exposing it. No OCR/AI service is used and PDF content is never sent to third parties. Password-reset e-mail needs SMTP (not configured), reset from the NAS shell (see PRIVACY.md section 4). Back up the data folder before uninstalling with data removal."

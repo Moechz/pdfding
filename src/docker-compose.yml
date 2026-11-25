@@ -1,7 +1,7 @@
 # ===========================================================================
 # Pdfding for TerraMaster TOS 7 (Docker application)
 # ===========================================================================
-# Upstream image : mrmn/pdfding:v1.7.2 (Docker Hub, used unmodified)
+# Upstream image : mrmn/pdfding:v1.15.0 (Docker Hub, used unmodified)
 #
 # Ports   : host 8056 -> container 8000. The host port is in the
 #           TOS-recommended 8000-19999 range and is not one of the reserved
@@ -14,8 +14,13 @@
 #           non-root user, no privileged mode, no network_mode: host, no
 #           cap_add, explicit TZ, a healthcheck on the only service, and
 #           x-app-meta as the last block.
-# Wrapper : the upstream image runs as root; the entrypoint below replaces
-#           it so the service can run as an unprivileged user.
+# Wrapper : the upstream image already runs as the non-root user 'nonroot'
+#           (uid 1000); the entrypoint below only supplies a persistent
+#           SECRET_KEY and tightens the data-directory permissions.
+# Cookies : TOS opens the app over plain HTTP. Upstream defaults both cookie
+#           flags to TRUE when the variables are absent, so a Secure session
+#           cookie is issued over HTTP, the browser never sends it back and
+#           login loops (review item F5). Both are therefore set to FALSE.
 # Escaping: docker compose interpolates ${VAR}/$VAR in compose files, so any
 #           '$' meant for the shell is written '$$'.
 #
@@ -27,7 +32,7 @@
 
 services:
   pdfdingdocker:
-    image: mrmn/pdfding:v1.7.2
+    image: mrmn/pdfding:v1.15.0
     container_name: pdfdingdocker
     restart: unless-stopped
     user: "1000:1000"
@@ -41,6 +46,8 @@ services:
       TZ: "Asia/Shanghai"
       HOST_NAME: "*"
       CSRF_COOKIE_SECURE: "FALSE"
+      SESSION_COOKIE_SECURE: "FALSE"
+      ACCOUNT_DEFAULT_HTTP_PROTOCOL: "http"
     volumes:
       - /Volume1/DockerAppData/pdfdingdocker/db:/home/nonroot/pdfding/db
       - /Volume1/DockerAppData/pdfdingdocker/media:/home/nonroot/pdfding/media

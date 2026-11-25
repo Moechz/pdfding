@@ -110,6 +110,10 @@ for s in secs:
     i = re.search(r'important\s*=\s*"(.+)"', body)
     chk(i is None or len(i.group(1)) <= 512, f"[{s}] important longer than 512 chars")
     chk(f'version      = "{ver}"' in body, f"[{s}] version != {ver}")
+    # The store's INI parser treats an ASCII ';' as a comment starter: a value
+    # containing it is truncated and can gain a trailing quote. Full-width '；'
+    # or a rewritten sentence is safe.
+    chk(";" not in body, f"[{s}] contains an ASCII semicolon (store parser truncates values)")
 chk(re.search(r"\bbeta\b", lang, re.I) is None, "lang must not contain the word 'beta' (V11)")
 
 # ---- svg icon ---------------------------------------------------------------
